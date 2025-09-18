@@ -10,7 +10,7 @@ function App() {
       {!loggedInUser ? (
         <LoginForm onLogin={setLoggedInUser} />
       ) : (
-        <UserManager />
+        <UserManager onLogout={() => setLoggedInUser(null)} />
       )}
     </div>
   );

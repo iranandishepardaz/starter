@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { supabase } from './supabaseClient';
+import './LoginForm.css'; // اضافه کن برای استایل جدا
 
 function LoginForm({ onLogin }) {
   const [userId, setUserId] = useState('');
@@ -27,29 +28,31 @@ function LoginForm({ onLogin }) {
       return;
     }
 
-    onLogin(data); // ارسال اطلاعات کاربر به کامپوننت اصلی
+    onLogin(data);
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <h2>ورود مدیر</h2>
-      <input
-        type="text"
-        placeholder="UserId"
-        value={userId}
-        onChange={(e) => setUserId(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="UserPass"
-        value={userPass}
-        onChange={(e) => setUserPass(e.target.value)}
-        required
-      />
-      <button type="submit">ورود</button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-    </form>
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleLogin}>
+        <h2>ورود مدیر</h2>
+        <input
+          type="text"
+          placeholder="نام کاربری"
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="رمز عبور"
+          value={userPass}
+          onChange={(e) => setUserPass(e.target.value)}
+          required
+        />
+        <button type="submit">ورود</button>
+        {error && <p className="error">{error}</p>}
+      </form>
+    </div>
   );
 }
 
